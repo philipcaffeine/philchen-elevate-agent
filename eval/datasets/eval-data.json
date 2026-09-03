@@ -1,0 +1,57 @@
+[
+  {
+    "id": "sick_leave_entitlement",
+    "tier": 1,
+    "category": "Policy Q&A",
+    "query": "How many days of paid outpatient sick leave do employees get in Singapore?",
+    "expected_answer_contains": ["14", "outpatient", "Medical Certificate"],
+    "expected_citations": ["Section 1.3", "Sick Time", "Hospitalization Leave"],
+    "must_refuse": false
+  },
+  {
+    "id": "vacation_leave_entitlement",
+    "tier": 1,
+    "category": "Policy Q&A",
+    "query": "What is the standard annual paid vacation leave entitlement for full-time employees in Singapore?",
+    "expected_answer_contains": ["vacation", "days", "accrual"],
+    "expected_citations": ["Section 1.2", "Paid Vacation Leave"],
+    "must_refuse": false
+  },
+  {
+    "id": "maternity_leave_duration",
+    "tier": 1,
+    "category": "Policy Q&A",
+    "query": "How many weeks of paid maternity leave are provided to eligible Singapore citizen mothers?",
+    "expected_answer_contains": ["16 weeks", "MOM", "Government-Paid"],
+    "expected_citations": ["Section 2.2", "Maternity Leave"],
+    "must_refuse": false
+  },
+  {
+    "id": "bereavement_leave_entitlement",
+    "tier": 1,
+    "category": "Policy Q&A",
+    "query": "How many days of paid bereavement leave are provided for an immediate family member?",
+    "expected_answer_contains": ["bereavement", "days", "immediate family"],
+    "expected_citations": ["Section 3.1", "Bereavement Leave"],
+    "must_refuse": false
+  },
+  {
+    "id": "hrms_balance_check",
+    "tier": 2,
+    "category": "HRMS Integration",
+    "query": "Check my current vacation and sick leave balances in WorkWeek.",
+    "caller_id": "EMP1024",
+    "expected_tools": ["get_leave_balances"],
+    "expected_answer_contains": ["14", "12", "vacation", "sick"],
+    "must_refuse": false
+  },
+  {
+    "id": "itms_ticket_status",
+    "tier": 2,
+    "category": "ITMS Integration",
+    "query": "What is the status of incident ticket INC-55100?",
+    "expected_tools": ["get_incident_ticket"],
+    "expected_answer_contains": ["INC-55100", "In Progress", "screen flickering"],
+    "must_refuse": false
+  }
+]

@@ -1,0 +1,45 @@
+# Evaluation Pipeline Configuration (go/elevate-apac-skills & SDD Section 9)
+version: 1.0
+pipeline_name: "altostrat-hr-agent-benchmark"
+project: "philchen-project-elevate"
+location: "global"
+
+judge:
+  model: "gemini-3.6-flash"
+  temperature: 0.0
+  self_consistency_samples: 1
+
+datasets:
+  functional: "eval/datasets/eval-data.json"
+  adversarial_gotchas: "eval/datasets/eval-data2.json"
+
+dimensions:
+  correctness:
+    weight: 3.0
+    description: "Factual alignment of the response against company handbook and policy logic."
+    scale: [0, 1, 2]
+  grounding:
+    weight: 3.0
+    description: "Degree to which generated claims strictly originate from retrieved context (0% hallucination allowed)."
+    scale: [0, 1, 2]
+  reasoning:
+    weight: 3.0
+    description: "Correct application of gotchas, prohibitions overriding limits, seniority rules, and prerequisites."
+    scale: [0, 1, 2]
+  abstention:
+    weight: 2.0
+    description: "Proper refusal on out-of-scope, ungrounded, or security violation prompts."
+    scale: [0, 1, 2]
+  citation:
+    weight: 1.0
+    description: "Presence of valid, deep-linked section citations."
+    scale: [0, 1, 2]
+  tool_precision:
+    weight: 2.0
+    description: "Accurate tool invocation with validated parameters."
+    scale: [0, 1, 2]
+
+pass_criteria:
+  overall_score_percent: 95.0
+  hard_cases_badge_percent: 100.0
+  hallucination_rate_percent: 0.0
