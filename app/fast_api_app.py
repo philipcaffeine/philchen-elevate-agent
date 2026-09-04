@@ -103,6 +103,8 @@ from app.main import (
     api_profile,
     api_balances,
     api_ticket,
+    api_list_tickets,
+    api_user_tickets,
 )
 
 app.add_api_route("/", web_chat_client, methods=["GET"], include_in_schema=False)
@@ -111,6 +113,8 @@ app.add_api_route("/healthz", health_check, methods=["GET"])
 app.add_api_route("/api/concepts", api_concepts, methods=["GET"])
 app.add_api_route("/api/profile/{employee_id}", api_profile, methods=["GET"])
 app.add_api_route("/api/balances/{employee_id}", api_balances, methods=["GET"])
+app.add_api_route("/api/tickets", api_list_tickets, methods=["GET"])
+app.add_api_route("/api/tickets/user/{caller_id}", api_user_tickets, methods=["GET"])
 app.add_api_route("/api/tickets/{ticket_id}", api_ticket, methods=["GET"])
 
 
