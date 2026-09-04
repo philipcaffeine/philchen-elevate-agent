@@ -16,17 +16,18 @@ import contextlib
 import os
 from collections.abc import AsyncIterator
 
-from a2a.server.tasks import InMemoryTaskStore
+import logging
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from google.adk.cli.fast_api import get_fast_api_app
 from google.adk.runners import Runner
 
 from app.app_utils import services
-from app.app_utils.a2a import attach_a2a_routes
 from app.app_utils.reasoning_engine_adapter import (
     attach_reasoning_engine_routes,
 )
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 otel_to_cloud = os.environ.get(
@@ -56,13 +57,19 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Shared by the A2A path and the reasoning_engine adapter routes.
     app.state.runner = runner
     app.state.agent_app_name = adk_app.name
-    await attach_a2a_routes(
-        app,
-        agent=root_agent,
-        runner=runner,
-        task_store=InMemoryTaskStore(),
-        rpc_path=f"/a2a/{adk_app.name}",
-    )
+    try:
+        from a2a.server.tasks import InMemoryTaskStore
+        from app.app_utils.a2a import attach_a2a_routes
+        await attach_a2a_routes(
+            app,
+            agent=root_agent,
+            runner=runner,
+            task_store=InMemoryTaskStore(),
+            rpc_path=f"/a2a/{adk_app.name}",
+        )
+        logger.info("Successfully attached A2A routes")
+    except Exception as e:
+        logger.warning("Optional A2A routes could not be attached: %s", e)
     yield
 
 
