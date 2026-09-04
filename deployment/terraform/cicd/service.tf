@@ -94,6 +94,21 @@ resource "google_vertex_ai_reasoning_engine" "app" {
         name  = "GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY"
         value = "true"
       }
+
+      env {
+        name  = "SAAS_MCP_TOKEN"
+        value = var.saas_mcp_token
+      }
+
+      env {
+        name  = "SIMULATE_MCP"
+        value = "false"
+      }
+
+      env {
+        name  = "GEMINI_MODEL"
+        value = var.gemini_model
+      }
     }
 
     source_code_spec {

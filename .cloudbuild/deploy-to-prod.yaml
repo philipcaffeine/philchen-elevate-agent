@@ -34,7 +34,7 @@ steps:
           --project ${_PROD_PROJECT_ID} \
           --region ${_REGION} \
           --service-account=${_APP_SERVICE_ACCOUNT_PROD} \
-          --update-env-vars="OTEL_RESOURCE_ATTRIBUTES=service.version=${COMMIT_SHA},LOGS_BUCKET_NAME=${_LOGS_BUCKET_NAME_PROD},GOOGLE_CLOUD_LOCATION=${_REGION},GEMINI_MODEL=gemini-2.5-flash"
+          --update-env-vars="OTEL_RESOURCE_ATTRIBUTES=service.version=${COMMIT_SHA},LOGS_BUCKET_NAME=${_LOGS_BUCKET_NAME_PROD},GOOGLE_CLOUD_LOCATION=${_REGION},GEMINI_MODEL=gemini-2.5-flash,SAAS_MCP_TOKEN=mcp_Is3gTPFDZb3NCbOXYakrtGHqsDVwf6gcbuIJpvEU1zs,SIMULATE_MCP=false"
 
   - name: "gcr.io/cloud-builders/gcloud"
     id: publish-to-gemini-app

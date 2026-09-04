@@ -12,6 +12,7 @@ from .itms_tool import (
     create_incident_ticket,
     add_ticket_comment,
     update_ticket_status,
+    list_incident_tickets,
 )
 from .workflow_tool import execute_medical_leave_workflow
 from .mcp_client import MCPClient, default_mcp_client
@@ -29,6 +30,7 @@ __all__ = [
     "create_incident_ticket",
     "add_ticket_comment",
     "update_ticket_status",
+    "list_incident_tickets",
     "execute_medical_leave_workflow",
     "MCPClient",
     "default_mcp_client",

@@ -35,7 +35,7 @@ gcloud run deploy "${SERVICE_NAME}" \
     --region "${REGION}" \
     --platform managed \
     --allow-unauthenticated \
-    --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID},GOOGLE_CLOUD_LOCATION=global,GOOGLE_GENAI_USE_VERTEXAI=true,GEMINI_MODEL=gemini-3.5-flash,SIMULATE_MCP=true" \
+    --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID},GOOGLE_CLOUD_LOCATION=global,GOOGLE_GENAI_USE_VERTEXAI=true,GEMINI_MODEL=gemini-2.5-flash,SAAS_MCP_TOKEN=mcp_Is3gTPFDZb3NCbOXYakrtGHqsDVwf6gcbuIJpvEU1zs,SIMULATE_MCP=false" \
     --memory 1Gi \
     --cpu 1 \
     --min-instances 0 \

@@ -16,8 +16,8 @@ JUDGE_MODEL = os.getenv("JUDGE_MODEL", "gemini-3.6-flash")
 
 # SaaS / MCP Server
 SAAS_MCP_SERVER_URL = os.getenv("SAAS_MCP_SERVER_URL", "https://mock-saas.aishprabhat.demo.altostrat.com/")
-SAAS_MCP_TOKEN = os.getenv("SAAS_MCP_TOKEN", "elevate-m3-mock-saas-token")
-SIMULATE_MCP = os.getenv("SIMULATE_MCP", "true").lower() == "true"
+SAAS_MCP_TOKEN = os.getenv("SAAS_MCP_TOKEN", "mcp_Is3gTPFDZb3NCbOXYakrtGHqsDVwf6gcbuIJpvEU1zs")
+SIMULATE_MCP = os.getenv("SIMULATE_MCP", "false").lower() == "true"
 
 # Audit & Governance Headers
 ORIGIN_HEADER_VALUE = "Altostrat-HR-Agent-MVP1"

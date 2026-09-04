@@ -117,4 +117,17 @@ variable "create_repository" {
   default     = false
 }
 
+variable "saas_mcp_token" {
+  description = "Bearer token for authenticating to WorkWeek and ServiceImmediately SaaS MCP servers"
+  type        = string
+  default     = "mcp_Is3gTPFDZb3NCbOXYakrtGHqsDVwf6gcbuIJpvEU1zs"
+}
+
+variable "gemini_model" {
+  description = "Gemini model identifier for Reasoning Engine deployment"
+  type        = string
+  default     = "gemini-2.5-flash"
+}
+
+
 

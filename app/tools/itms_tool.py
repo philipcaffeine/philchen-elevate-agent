@@ -194,3 +194,13 @@ def update_ticket_status(ticket_id: str, state: int, close_notes: Optional[str] 
         "close_notes": ticket["close_notes"],
         "origin": config.ORIGIN_HEADER_VALUE,
     }
+
+
+def list_incident_tickets(caller_id: Optional[str] = None) -> list[Dict[str, Any]]:
+    """Retrieve all incident tickets for a caller (or all tickets if caller_id omitted).
+    Enables UI service ticket integration.
+    """
+    if caller_id:
+        c_id = caller_id.strip().upper()
+        return [t for t in TICKETS_DB.values() if t.get("caller_id") == c_id]
+    return list(TICKETS_DB.values())
