@@ -4,6 +4,11 @@ version: 0.1.0
 description: Altostrat Singapore Enterprise HR Agentic Virtual Assistant
 entrypoint: app.agent:root_agent
 runtime: python3.11
-model: gemini-3.5-flash
+model: gemini-2.5-flash
 project: philchen-project-elevate
-location: global
+location: asia-southeast1
+acli_version: 1.4.2
+create_params:
+  cicd_runner: google_cloud_build
+  deployment_target: agent_runtime
+  is_a2a: true

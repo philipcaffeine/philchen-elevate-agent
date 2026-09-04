@@ -92,6 +92,12 @@ root_agent = LlmAgent(
     tools=AGENT_TOOLS,
 )
 
+try:
+    from google.adk.apps import App
+    app = App(name="app", root_agent=root_agent)
+except ImportError:
+    app = None
+
 _session_service = None
 
 
