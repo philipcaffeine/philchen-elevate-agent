@@ -88,7 +88,11 @@ app.description = "API for interacting with the Agent hr-policy-agent"
 
 # Proxy routes so the Vertex AI Console Playground (reasoning_engine SDK) can
 # talk to this agent alongside the native adk_api routes.
-attach_reasoning_engine_routes(app)
+try:
+    attach_reasoning_engine_routes(app)
+    logger.info("Successfully attached reasoning engine routes")
+except Exception as e:
+    logger.warning("Could not attach reasoning engine adapter routes: %s", e)
 
 # Attach Web Chat Client & REST endpoints
 from app.main import (
