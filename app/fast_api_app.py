@@ -107,9 +107,13 @@ from app.main import (
     api_user_tickets,
 )
 
-app.add_api_route("/", web_chat_client, methods=["GET"], include_in_schema=False)
+from fastapi.routing import APIRoute
+
+app.routes.insert(0, APIRoute("/healthz", health_check, methods=["GET"]))
+app.routes.insert(1, APIRoute("/", web_chat_client, methods=["GET"], include_in_schema=False))
+app.routes.insert(2, APIRoute("/client", web_chat_client, methods=["GET"], include_in_schema=False))
+
 app.add_api_route("/chat", chat_endpoint, methods=["POST"])
-app.add_api_route("/healthz", health_check, methods=["GET"])
 app.add_api_route("/api/concepts", api_concepts, methods=["GET"])
 app.add_api_route("/api/profile/{employee_id}", api_profile, methods=["GET"])
 app.add_api_route("/api/balances/{employee_id}", api_balances, methods=["GET"])
