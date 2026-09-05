@@ -38,7 +38,8 @@ class ProxyHandler(http.server.BaseHTTPRequestHandler):
         self.proxy_request('HEAD')
 
     def proxy_request(self, method):
-        target = f'{TARGET_URL}{self.path}'
+        path = '/client' if self.path == '/' else self.path
+        target = f'{TARGET_URL}{path}'
         headers = {k: v for k, v in self.headers.items() if k.lower() not in ('host', 'authorization')}
         try:
             token = get_token()
